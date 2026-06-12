@@ -1,4 +1,4 @@
-<img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/5b3620ce-4ca9-474a-86ea-1208ebb044c8" />
+<img width="2654" height="2486" alt="diagram-export-6-13-2026-12_28_32-AM" src="https://github.com/user-attachments/assets/715e1d09-418e-419f-8f7a-000c2d24ec00" />
 
 
 Assiut Traffic Monitoring & Control Dashboard
