@@ -302,6 +302,10 @@ Data Processing
 
 # Screenshots
 <img width="1916" height="960" alt="Screenshot 2026-06-07 203803" src="https://github.com/user-attachments/assets/ab140ecf-99f5-4fad-a51c-ee60a6e13e1a" />
+<img width="352" height="281" alt="Screenshot 2026-06-07 210808" src="https://github.com/user-attachments/assets/70fd7840-c0e0-4c39-8735-21440abee3fb" />
+<img width="1016" height="538" alt="Screenshot 2026-06-07 2043621" src="https://github.com/user-attachments/assets/31ad6932-a3f1-4254-aa0b-acd0809d1f62" />
+<img width="426" height="449" alt="Screenshot 2026-06-07 213552" src="https://github.com/user-attachments/assets/8bc6e384-9eb6-43b0-b45b-423b32a07a61" />
+<img width="354" height="213" alt="Screenshot 2026-06-07 204709" src="https://github.com/user-attachments/assets/38e1bad4-1db5-4508-821e-c93669390d00" />
 <img width="1554" height="905" alt="Screenshot 2026-06-07 204621" src="https://github.com/user-attachments/assets/5df174a4-a6d7-481d-a2ae-e969bffe7a80" />
 <img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/46ca3557-0a6a-4a46-aca4-659bb5c0a552" />
 
