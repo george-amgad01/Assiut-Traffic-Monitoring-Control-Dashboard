@@ -1,4 +1,4 @@
-# 🚦 Assiut Traffic Monitoring & Control Dashboard
+<img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/748ef46d-9ac3-421f-940d-40ddfe23cf27" /><img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/ea878b2b-f520-48b5-b0d4-49a353d63f18" /># 🚦 Assiut Traffic Monitoring & Control Dashboard
 
 An interactive real-time traffic monitoring and visualization platform developed for the Assiut Traffic Management System.
 
@@ -355,13 +355,12 @@ Data Processing
 ---
 
 # Screenshots
-
-(Add dashboard screenshots here)
+<img width="1916" height="960" alt="Screenshot 2026-06-07 203803" src="https://github.com/user-attachments/assets/ab140ecf-99f5-4fad-a51c-ee60a6e13e1a" />
+<img width="1554" height="905" alt="Screenshot 2026-06-07 204621" src="https://github.com/user-attachments/assets/5df174a4-a6d7-481d-a2ae-e969bffe7a80" />
+<img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/46ca3557-0a6a-4a46-aca4-659bb5c0a552" />
 
 # Demo Video
 
-(Add dashboard demonstration video here)
 
 # Architecture Diagram
-
-(Add architecture diagram here)
+<img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/5b3620ce-4ca9-474a-86ea-1208ebb044c8" />
