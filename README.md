@@ -1,4 +1,7 @@
-<img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/748ef46d-9ac3-421f-940d-40ddfe23cf27" /><img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/ea878b2b-f520-48b5-b0d4-49a353d63f18" /># 🚦 Assiut Traffic Monitoring & Control Dashboard
+<img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/5b3620ce-4ca9-474a-86ea-1208ebb044c8" />
+
+
+Assiut Traffic Monitoring & Control Dashboard
 
 An interactive real-time traffic monitoring and visualization platform developed for the Assiut Traffic Management System.
 
