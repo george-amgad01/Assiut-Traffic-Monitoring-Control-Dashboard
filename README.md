@@ -5,7 +5,7 @@ Assiut Traffic Monitoring & Control Dashboard
 
 An interactive real-time traffic monitoring and visualization platform developed for the Assiut Traffic Management System.
 
-The dashboard was designed to bridge the gap between traffic simulation, artificial intelligence, and operational decision-making by transforming raw traffic data into actionable insights. It provides a unified interface for monitoring the entire traffic network, analyzing individual intersections, visualizing congestion patterns, evaluating AI-driven traffic control decisions, and supporting post-simulation analysis.
+The dashboard was designed to bridge the gap between traffic simulation, artificial intelligence, and operational decision-making by transforming raw traffic data into actionable insights. 
 
 🏆 Developed as part of the IEEE 1st Place Winning Assiut Traffic Management System.
 
@@ -71,78 +71,21 @@ This design enables real-time updates while maintaining a responsive user interf
 
 # Core Components
 
-## main.py
+### main.py
 
-Acts as the application entry point.
+Entry point of the dashboard that initializes the PyQt application, loads runtime configurations, creates the main interface, and launches background simulation processes.
 
-Responsibilities:
+### worker.py
 
-* Initialize the PyQt application
-* Configure runtime settings
-* Create dashboard components
-* Launch simulation workers
-* Manage application lifecycle
+Backend processing layer responsible for running traffic simulation and AI computations in a dedicated `QThread`. It collects real-time traffic metrics, vehicle positions, and intersection statistics, then streams structured JSON updates to the dashboard without blocking the user interface.
 
-The main file is responsible for bootstrapping the entire dashboard environment.
+### window.py
 
----
+Controller layer that bridges the backend and frontend. It receives live updates through PyQt signal-slot communication and synchronizes dashboard components by forwarding data to the visualization layer.
 
-## worker.py
+### assiut_map.html
 
-The worker serves as the backend processing layer.
-
-Responsibilities:
-
-* Execute traffic simulation processes
-* Collect live traffic metrics
-* Track vehicle positions
-* Process intersection statistics
-* Generate structured JSON payloads
-* Stream updates to the dashboard
-
-The worker operates inside a dedicated QThread to prevent the user interface from freezing during intensive simulation and AI computations.
-
-Without this separation, the dashboard would become unresponsive while the traffic control system is running.
-
----
-
-## window.py
-
-Acts as the dashboard controller.
-
-Responsibilities:
-
-* Receive backend updates
-* Handle signal-slot communication
-* Synchronize frontend components
-* Push updates to JavaScript
-* Manage dashboard events
-
-This layer acts as the communication bridge between Python and the web-based frontend.
-
----
-
-## assiut_map.html
-
-The visualization layer of the system.
-
-Built using:
-
-* HTML
-* CSS
-* JavaScript
-* Leaflet.js
-* OpenStreetMap
-
-Responsibilities:
-
-* Render traffic maps
-* Display intersection information
-* Visualize congestion
-* Show vehicle movements
-* Update charts and KPIs
-* Present operational analytics
-
+Frontend visualization layer built with HTML, CSS, JavaScript, Leaflet.js, and OpenStreetMap. It renders the traffic network, intersection analytics, congestion heat maps, vehicle movements, charts, and real-time performance indicators.
 ---
 
 # Dashboard Hierarchy
