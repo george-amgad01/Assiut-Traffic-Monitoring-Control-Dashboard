@@ -1,11 +1,11 @@
 <img width="2314" height="2184" alt="diagram-export-6-13-2026-12_24_06-AM" src="https://github.com/user-attachments/assets/1b2b788e-d96f-41e8-b7e9-21f10d597c1a" />
 
 
-Assiut Traffic Monitoring & Control Dashboard
+# 🚦 Assiut Traffic Monitoring, Control & Decision Analysis Dashboard
 
-An interactive real-time traffic monitoring and visualization platform developed for the Assiut Traffic Management System.
+An interactive real-time traffic monitoring, visualization, and decision analysis platform developed for the Assiut Traffic Management System.
 
-The dashboard was designed to bridge the gap between traffic simulation, artificial intelligence, and operational decision-making by transforming raw traffic data into actionable insights. 
+The platform was designed to bridge the gap between traffic simulation, artificial intelligence, and operational decision-making by transforming raw traffic data into actionable insights. Beyond real-time monitoring, the system introduces an explainability and post-analysis framework capable of evaluating AI traffic control decisions and identifying opportunities for performance improvement.
 
 🏆 Developed as part of the IEEE 1st Place Winning Assiut Traffic Management System.
 
@@ -13,21 +13,21 @@ The dashboard was designed to bridge the gap between traffic simulation, artific
 
 # Overview
 
-Managing a city-scale traffic network requires more than optimizing traffic signals. Traffic operators need visibility into network conditions, intersection performance, congestion hotspots, environmental impact, and the behavior of intelligent control systems.
+Managing a city-scale traffic network requires more than optimizing traffic signals. Traffic operators need visibility into network conditions, intersection performance, congestion hotspots, environmental impact, and the behavior of intelligent traffic control systems.
 
-To address this challenge, the dashboard was developed as a real-time monitoring and analytics platform capable of displaying live traffic conditions across nine major signalized intersections in Assiut Governorate.
+To address this challenge, the platform was developed as a real-time monitoring and analytics environment capable of displaying live traffic conditions across nine major signalized intersections in Assiut Governorate while simultaneously analyzing the decisions made by Multi-Agent Reinforcement Learning agents.
 
-The platform combines simulation data, reinforcement learning outputs, network analytics, and interactive visualizations into a single operational interface.
+The system combines traffic simulation, AI-driven control, operational analytics, explainability tools, and interactive visualizations into a unified decision-support platform.
 
 ---
 
 # Dashboard Objectives
 
-The dashboard was built with five primary objectives:
+The platform was built around five primary objectives:
 
 ### 1. Network-Level Awareness
 
-Provide traffic operators with a high-level view of overall network performance.
+Provide traffic operators with a high-level view of overall network performance and traffic efficiency.
 
 ### 2. Intersection-Level Monitoring
 
@@ -35,23 +35,25 @@ Allow detailed inspection of every signalized intersection individually.
 
 ### 3. Congestion Identification
 
-Instantly identify bottlenecks and high-pressure traffic areas.
+Instantly identify bottlenecks, congestion hotspots, and high-pressure traffic areas.
 
 ### 4. AI Decision Monitoring
 
-Track how the traffic control system behaves and evaluate its effectiveness.
+Track how the traffic control system behaves, monitor selected signal phases, and evaluate their impact on traffic conditions.
 
-### 5. Data Analysis & Explainability
+### 5. Explainability & Continuous Improvement
 
-Store operational data for future analysis, model evaluation, and decision interpretation.
+Transform traffic control from a black-box AI system into an explainable and analyzable framework capable of identifying mistakes, understanding agent behavior, and improving future decision-making.
 
 ---
 
 # System Architecture
 
-The dashboard follows a layered architecture separating data generation, processing, communication, and visualization.
+The platform follows a layered architecture separating simulation, intelligence, communication, visualization, and post-analysis.
 
-Traffic Simulation & AI Engine
+Traffic Simulation (SUMO)
+↓
+Multi-Agent Control System (MAPPO)
 ↓
 Data Collection Layer
 ↓
@@ -59,13 +61,13 @@ Worker Thread
 ↓
 PyQt Signal-Slot Communication
 ↓
-Window Controller
+Visualization Dashboard
 ↓
-HTML/JavaScript Visualization
+CSV Export & Analytics
 ↓
-Interactive Dashboard
+Agent Decision Analyzer
 
-This design enables real-time updates while maintaining a responsive user interface.
+This architecture enables real-time monitoring while maintaining a responsive user interface and supporting advanced post-simulation analysis.
 
 ---
 
@@ -73,47 +75,55 @@ This design enables real-time updates while maintaining a responsive user interf
 
 ### main.py
 
-Entry point of the dashboard that initializes the PyQt application, loads runtime configurations, creates the main interface, and launches background simulation processes.
+Application entry point responsible for initializing the dashboard environment, loading runtime configurations, creating the main interface, and launching simulation workers.
 
 ### worker.py
 
-Backend processing layer responsible for running traffic simulation and AI computations in a dedicated `QThread`. It collects real-time traffic metrics, vehicle positions, and intersection statistics, then streams structured JSON updates to the dashboard without blocking the user interface.
+Backend processing layer responsible for running traffic simulation and AI computations inside a dedicated `QThread`. It collects live traffic metrics, vehicle positions, intersection statistics, and agent outputs before streaming structured JSON updates to the dashboard.
 
 ### window.py
 
-Controller layer that bridges the backend and frontend. It receives live updates through PyQt signal-slot communication and synchronizes dashboard components by forwarding data to the visualization layer.
+Controller layer that bridges backend services and frontend visualization components. It receives updates through PyQt signal-slot communication and synchronizes all dashboard elements in real time.
 
 ### assiut_map.html
 
-Frontend visualization layer built with HTML, CSS, JavaScript, Leaflet.js, and OpenStreetMap. It renders the traffic network, intersection analytics, congestion heat maps, vehicle movements, charts, and real-time performance indicators.
+Interactive visualization layer built with HTML, CSS, JavaScript, Leaflet.js, and OpenStreetMap. It renders maps, congestion heat maps, intersection analytics, vehicle movements, rankings, and operational KPIs.
+
+### Agent Analyzer
+
+Post-analysis and explainability module designed to evaluate traffic signal decisions generated by MAPPO agents.
+
+The analyzer processes exported CSV logs and investigates:
+
+* Why a specific phase was selected
+* The impact of the decision on the local intersection
+* The impact on overall network performance
+* Reward evolution after each decision
+* Potential mistakes and suboptimal actions
+* Opportunities for reward redesign and agent improvement
+
+The objective is to move beyond performance measurement and towards understanding the reasoning and consequences of AI-generated traffic control decisions.
+
 ---
 
 # Dashboard Hierarchy
 
-The dashboard follows a hierarchical monitoring approach.
+The dashboard follows a hierarchical monitoring approach designed for traffic operators and researchers.
 
-## Level 1 — Network Performance
+### Level 1 — Network Performance
 
-Provides an overview of the entire traffic network.
-
-Metrics include:
+Provides a network-wide overview using key indicators such as:
 
 * Network Efficiency Score (NES)
 * Average Delay
 * Average Queue Length
 * Average Waiting Time
-* Total Reward
+* Cumulative Reward
 * Sustainability Indicators
 
-This level helps operators evaluate overall network health.
+### Level 2 — Intersection Performance
 
----
-
-## Level 2 — Intersection Performance
-
-Displays detailed metrics for each intersection.
-
-Metrics include:
+Provides detailed metrics for each signalized intersection:
 
 * Queue Length
 * Waiting Time
@@ -121,136 +131,98 @@ Metrics include:
 * Throughput
 * Average Speed
 * CO₂ Emissions
-* Current Signal Phase
-* Emergency Vehicle Status
+* Signal Phase Status
+* Emergency Vehicle Detection
 
-This layer enables localized traffic analysis.
+### Level 3 — Live Ranking
 
----
+Dynamically ranks intersections according to operational performance, helping identify best-performing and problematic locations.
 
-## Level 3 — Live Ranking
+### Level 4 — Heat Map
 
-Intersections are ranked dynamically according to performance.
+Visualizes traffic pressure and congestion intensity across the network using a real-time heat layer.
 
-The ranking system helps identify:
+### Level 5 — Episode Summary & Analytics
 
-* Best performing intersections
-* Worst performing intersections
-* Potential bottlenecks
-
-This allows operators to quickly focus on problematic areas.
-
----
-
-## Level 4 — Heat Map
-
-A visual congestion layer showing traffic intensity.
-
-Heat maps provide:
-
-* Instant congestion awareness
-* Network pressure visualization
-* Traffic hotspot identification
-
-The intensity and radius of each heat region correspond to traffic conditions.
-
----
-
-## Level 5 — Episode Summary & Analytics
-
-Provides historical performance information.
-
-Includes:
+Provides historical insights including:
 
 * Reward Trends
 * Episode Statistics
 * Training Progress
 * Performance History
 
-This layer supports long-term evaluation of the traffic control strategy.
-
 ---
 
-# Real-Time Vehicle Visualization
+# Agent Decision Analysis
 
-The dashboard visualizes moving vehicles directly on the road network.
+One of the platform's key innovations is the introduction of an explainability layer for Multi-Agent Reinforcement Learning.
 
-Each vehicle contains:
+Instead of only evaluating final performance metrics, the system records traffic states, selected phases, rewards, and network conditions to analyze agent behavior after execution.
 
-* Position
-* Speed
-* Direction
-* Vehicle Type
+The analysis pipeline follows:
 
-This creates a realistic operational view of network activity.
+Traffic State
+↓
+Selected Phase
+↓
+Traffic Outcome
+↓
+Performance Evaluation
+↓
+Decision Quality Assessment
 
----
+This enables researchers to investigate:
 
-# Emergency Vehicle Monitoring
+* Which traffic conditions triggered specific phase selections
+* How individual decisions affected congestion and delay
+* Whether decisions improved or degraded network performance
+* Recurring decision patterns
+* Potential weaknesses in the reward function
 
-Emergency vehicles are highlighted separately from normal traffic.
-
-The dashboard allows operators to monitor:
-
-* Emergency vehicle presence
-* Traffic signal priority behavior
-* Intersection response
-
-This feature supports future emergency traffic management strategies.
-
----
-
-# Sustainability Monitoring
-
-Beyond congestion metrics, the dashboard includes environmental indicators.
-
-Metrics include:
-
-* CO₂ Emissions
-* Traffic Efficiency
-* Sustainability Scores
-
-These indicators help evaluate the environmental impact of traffic control decisions.
+The long-term objective is to support explainable reinforcement learning and continuous policy improvement.
 
 ---
 
 # Data Export & Post Analysis
 
-The dashboard supports exporting operational data into CSV files.
+The platform supports exporting operational data into structured CSV files.
 
-Exported data includes:
+Exported datasets include:
 
 * Simulation Steps
-* Intersection States
+* Traffic States
 * Queue Lengths
-* Delays
 * Waiting Times
+* Delays
+* Throughput
 * Signal Phases
-* Network Efficiency Scores
 * Agent Decisions
+* Network Efficiency Scores
+* Reward Values
 
 These datasets can be used for:
 
 * Performance Evaluation
 * Statistical Analysis
-* Explainable AI Research
 * Traffic Pattern Discovery
-* Decision Interpretation
-
-The goal is to transform traffic control from a black-box system into an explainable and analyzable platform.
+* Explainable AI Research
+* Decision Trace Analysis
+* Future Machine Learning Models
+* Agent Performance Improvement
 
 ---
 
 # Technologies Used
 
-Backend
+### Backend
 
 * Python
 * PyQt5
 * QThread
 * TraCI
+* JSON Streaming
 
-Frontend
+### Frontend
 
 * HTML
 * CSS
@@ -258,19 +230,35 @@ Frontend
 * Leaflet.js
 * OpenStreetMap
 
-Visualization
+### Traffic Simulation
 
-* Interactive Maps
-* Heat Maps
-* Ranking Systems
-* KPI Monitoring
-* Analytics Panels
+* SUMO
+* SUMO-GUI
 
-Data Processing
+### Artificial Intelligence
 
-* JSON Streaming
+* Multi-Agent Reinforcement Learning (MAPPO)
+
+### Analytics & Explainability
+
 * CSV Export
-* Performance Logging
+* Decision Analysis
+* Performance Evaluation
+* Agent Explainability Pipeline
+* Post-Simulation Analytics
+
+---
+
+# Future Development
+
+* Counterfactual Decision Evaluation
+* Explainable Reinforcement Learning (XRL)
+* SHAP-Based Feature Importance Analysis
+* Traffic Forecasting
+* Emergency Vehicle Priority Control
+* Real-Time Traffic Sensor Integration
+* Smart City Command Center Deployment
+
 
 ---
 
@@ -284,7 +272,10 @@ Data Processing
 <img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/46ca3557-0a6a-4a46-aca4-659bb5c0a552" />
 
 # Demo Video
+
 https://youtu.be/ED-FFY5QcNU?si=k-QB7oSDbM7Yhd4N
 
+
 # Architecture Diagram
+
 <img width="2314" height="2184" alt="diagram-export-6-13-2026-12_24_06-AM" src="https://github.com/user-attachments/assets/ddd30683-0170-4f9d-b108-41c065ef8f0a" />
