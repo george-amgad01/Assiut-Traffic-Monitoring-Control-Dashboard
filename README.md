@@ -241,21 +241,6 @@ The goal is to transform traffic control from a black-box system into an explain
 
 ---
 
-# Technical Challenges
-
-One of the biggest engineering challenges was maintaining dashboard responsiveness while continuously processing traffic simulation and AI-generated data.
-
-This challenge was solved through:
-
-* PyQt5 QThread Architecture
-* Asynchronous Processing
-* Signal-Slot Communication
-* JSON-Based Data Streaming
-
-This architecture enables smooth real-time visualization without dashboard freezing.
-
----
-
 # Technologies Used
 
 Backend
@@ -289,17 +274,6 @@ Data Processing
 
 ---
 
-# Future Enhancements
-
-* Explainable AI Dashboard
-* Traffic Forecasting
-* Real-Time Camera Integration
-* Predictive Congestion Analysis
-* Emergency Vehicle Priority Control
-* Smart City Control Center Integration
-
----
-
 # Screenshots
 <img width="1916" height="960" alt="Screenshot 2026-06-07 203803" src="https://github.com/user-attachments/assets/ab140ecf-99f5-4fad-a51c-ee60a6e13e1a" />
 <img width="352" height="281" alt="Screenshot 2026-06-07 210808" src="https://github.com/user-attachments/assets/70fd7840-c0e0-4c39-8735-21440abee3fb" />
@@ -310,7 +284,7 @@ Data Processing
 <img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/46ca3557-0a6a-4a46-aca4-659bb5c0a552" />
 
 # Demo Video
-
+https://youtu.be/ED-FFY5QcNU?si=k-QB7oSDbM7Yhd4N
 
 # Architecture Diagram
 <img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/5b3620ce-4ca9-474a-86ea-1208ebb044c8" />
