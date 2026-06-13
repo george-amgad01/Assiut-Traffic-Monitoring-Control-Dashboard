@@ -243,8 +243,3 @@ These datasets can be used for:
 <img width="354" height="213" alt="Screenshot 2026-06-07 204709" src="https://github.com/user-attachments/assets/38e1bad4-1db5-4508-821e-c93669390d00" />
 <img width="1554" height="905" alt="Screenshot 2026-06-07 204621" src="https://github.com/user-attachments/assets/5df174a4-a6d7-481d-a2ae-e969bffe7a80" />
 <img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/46ca3557-0a6a-4a46-aca4-659bb5c0a552" />
-
-
-# Architecture Diagram
-
-<img width="2314" height="2184" alt="diagram-export-6-13-2026-12_24_06-AM" src="https://github.com/user-attachments/assets/ddd30683-0170-4f9d-b108-41c065ef8f0a" />
