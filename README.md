@@ -146,9 +146,9 @@ Provides historical insights including:
 
 # Agent Decision Analysis
 
-One of the platform's key innovations is the introduction of an explainability layer for Multi-Agent Reinforcement Learning.
+Post-analysis and explainability module that evaluates MAPPO traffic signal decisions using exported CSV logs to understand why each phase was chosen and its impact on both local intersections and the whole network.
 
-Instead of only evaluating final performance metrics, the system records traffic states, selected phases, rewards, and network conditions to analyze agent behavior after execution.
+It also analyzes reward evolution, detects suboptimal actions, and identifies improvement opportunities to move from simple performance measurement to interpreting AI decision reasoning and consequences.
 
 The analysis pipeline follows:
 
@@ -161,16 +161,6 @@ Traffic Outcome
 Performance Evaluation
 ↓
 Decision Quality Assessment
-
-This enables researchers to investigate:
-
-* Which traffic conditions triggered specific phase selections
-* How individual decisions affected congestion and delay
-* Whether decisions improved or degraded network performance
-* Recurring decision patterns
-* Potential weaknesses in the reward function
-
-The long-term objective is to support explainable reinforcement learning and continuous policy improvement.
 
 ---
 
