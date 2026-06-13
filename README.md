@@ -287,4 +287,4 @@ Data Processing
 https://youtu.be/ED-FFY5QcNU?si=k-QB7oSDbM7Yhd4N
 
 # Architecture Diagram
-<img width="2775" height="1528" alt="diagram-export-6-12-2026-8_23_44-PM" src="https://github.com/user-attachments/assets/5b3620ce-4ca9-474a-86ea-1208ebb044c8" />
+<img width="2314" height="2184" alt="diagram-export-6-13-2026-12_24_06-AM" src="https://github.com/user-attachments/assets/ddd30683-0170-4f9d-b108-41c065ef8f0a" />
