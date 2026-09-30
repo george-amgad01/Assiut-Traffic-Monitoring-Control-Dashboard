@@ -1,0 +1,13 @@
+# Output directory for generated plots, logs and CSV/JSON exports.
+#
+# Kept in the repository via this file so the folder survives a fresh clone.
+# Its contents are produced at runtime and are intentionally NOT committed:
+#
+#   fixedtime_simulation_results.png       fixed-time baseline curves
+#   fixedtime_intersection_comparison.png  fixed-time per-junction ranking
+#   mappo_training.png                     MAPPO training curves
+#   mappo_comparison.png                   MAPPO per-junction ranking
+#   sumo_errors.log                        SUMO diagnostics
+#
+# The dashboard also writes CSV/JSON session exports straight from the UI
+# (exportCSV / exportJSON buttons in assiut_map.html) to wherever you save them.

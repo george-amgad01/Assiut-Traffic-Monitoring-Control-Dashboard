@@ -1,0 +1,24 @@
+# ── Python ────────────────────────────────────────────────────────────
+# PyQtWebEngine is a SEPARATE package from PyQt5. Both are required:
+#   PyQt5          -> QtWidgets, QtCore, QtGui, QtWebChannel
+#   PyQtWebEngine  -> QtWebEngineWidgets (the Chromium view that renders the map)
+PyQt5>=5.15
+PyQtWebEngine>=5.15
+
+# torch>=2.4 is a hard floor: the trainer calls torch.amp.autocast('cuda', ...)
+# and GradScaler('cuda', ...), whose device_type-first signature landed in 2.4.
+torch>=2.4
+numpy>=1.24
+matplotlib>=3.7          # training curves and per-intersection comparison plots
+
+# ── Provided by SUMO, NOT pip-installable ─────────────────────────────
+# traci ships inside the SUMO distribution and is used to drive the live
+# simulation. Set SUMO_HOME, then:
+#   Linux/macOS : export PYTHONPATH="$SUMO_HOME/tools:$PYTHONPATH"
+#   Windows     : set PYTHONPATH=%SUMO_HOME%\tools;%PYTHONPATH%
+# Both entry points also append $SUMO_HOME/tools to sys.path at import time.
+#
+# ── Internet required at runtime ──────────────────────────────────────
+# assiut_map.html loads Leaflet 1.9.4, Chart.js 4.4.1 and html2canvas 1.4.1
+# from cdnjs, plus OpenStreetMap raster tiles. Without a connection Leaflet
+# falls back to a built-in canvas renderer, but the charts will not load.
