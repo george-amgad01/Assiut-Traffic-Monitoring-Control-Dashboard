@@ -17,8 +17,7 @@ drive signals instead of reading a table of averages at the end.
 
 ## Demo video
 
-<!-- PASTE DEMO VIDEO HERE -->
-
+]
 Watch the dashboard running against the live SUMO simulation: signal phases changing across the
 nine intersections, congestion spreading through the road network, and the per-junction metrics
 updating in real time.
@@ -29,11 +28,7 @@ updating in real time.
 
 ## Architecture
 
-<!-- PASTE ARCHITECTURE DIAGRAM HERE -->
-<!-- Suggested alt: System architecture - SUMO simulation feeding the MAPPO
-     controller, data collection, worker thread, PyQt signal-slot bridge,
-     and the visualisation dashboard
-     Suggested size: width="2314" -->
+<img width="2314" height="2184" alt="diagram-export-6-13-2026-12_24_06-AM" src="https://github.com/user-attachments/assets/f050bfff-1d42-4098-84a1-1895696348f0" />
 
 A full design document — the threading model, the Python↔JavaScript bridge, why a WebView was
 chosen over native Qt, and the reasoning behind every tool — is in
@@ -53,9 +48,6 @@ chosen over native Qt, and the reasoning behind every tool — is in
 - [Runtime artefacts](#runtime-artefacts)
 - [Tech stack](#tech-stack)
 - [Standalone guarantee](#standalone-guarantee)
-- [Known issues](#known-issues)
-- [License](#license)
-- [Authors](#authors)
 
 ---
 
@@ -117,38 +109,29 @@ Everything below is implemented in the current code.
 
 ### Network overview
 
-<!-- PASTE: full dashboard, width="1916" height="960" -->
-<!-- Suggested alt: Network overview - full dashboard with the Assiut map,
-     per-intersection KPI cards, rolling charts and the live ranking panel -->
+<img width="1916" height="960" alt="Screenshot 2026-06-07 203803" src="https://github.com/user-attachments/assets/4f0e1974-4387-47e8-aca5-74c4a3a5193c" />
 
-### Intersection spotlight
 
-<!-- PASTE: intersection detail, width="1016" height="538" -->
-<!-- Suggested alt: Intersection spotlight showing one junction's queue, delay,
-     throughput, signal phase and performance score -->
+### Intersection Spotlight
 
-### MAPPO vs Fixed-Time
+<img width="1554" height="905" alt="Screenshot 2026-06-07 204621" src="https://github.com/user-attachments/assets/31f0cfc6-a783-4cfc-8f66-e29216255ce2" />
 
-<!-- PASTE: comparison panel, width="1554" height="905" -->
-<!-- Suggested alt: Comparison panel contrasting MAPPO against the Fixed-Time
-     baseline across delay, queue and NES -->
+
+### Intersection Ranking
+
+<img width="426" height="449" alt="Screenshot 2026-06-07 213552" src="https://github.com/user-attachments/assets/87410643-79fe-4680-bc69-8d7096f09f3f" />
 
 ### Episode summary
 
-<!-- PASTE: episode card, width="1139" height="948" -->
-<!-- Suggested alt: Episode summary card with the network efficiency score and
-     best/worst intersection breakdown -->
+<img width="353" height="178" alt="Screenshot 2026-06-07 194453" src="https://github.com/user-attachments/assets/a9068461-64b1-4718-981e-43a0614860b6" />
 
 ### Detail panels
 
-<!-- PASTE: ranking panel, width="352" height="281" -->
-<!-- Suggested alt: Live ranking panel ordering intersections by performance score -->
+<img width="352" height="281" alt="Screenshot 2026-06-07 210808" src="https://github.com/user-attachments/assets/13116a2f-9840-4a2a-af7b-f16153859a16" />
 
-<!-- PASTE: spotlight popup, width="426" height="449" -->
-<!-- Suggested alt: Intersection spotlight popup with detailed metrics -->
+### CSV Summary (for machine learning identify gaps and problem solutions) 
 
-<!-- PASTE: legend/heat controls, width="354" height="213" -->
-<!-- Suggested alt: Congestion legend and heat map controls -->
+<img width="1139" height="948" alt="Screenshot 2026-06-07 212810" src="https://github.com/user-attachments/assets/d0fe06fb-f4e2-4280-9b05-2c4f4ad75c87" />
 
 ---
 
@@ -181,8 +164,7 @@ Everything below is implemented in the current code.
 ├── results/                      Fixed-Time plots and logs — kept via .gitkeep
 ├── saved_models/                 MAPPO checkpoints and plots — created at runtime, git-ignored
 ├── requirements.txt
-├── .gitignore / .gitattributes
-└── LICENSE
+└── .gitignore / .gitattributes
 ```
 
 ### Which file does what
@@ -329,9 +311,7 @@ Nothing here is committed; all of it is produced when you run.
 | `results/` | Fixed-Time mode | `fixedtime_simulation_results.png`, `fixedtime_intersection_comparison.png`, `sumo_errors.log` |
 | working directory | SUMO | `e2_*.xml` detector outputs (git-ignored) |
 
-Note the asymmetry: **MAPPO writes to `saved_models/`, Fixed-Time writes to `results/`.** That is
-inherited from the research codebase rather than a deliberate choice — see
-[Known issues](#known-issues).
+
 
 CSV and JSON session exports are written wherever you save them in the export dialog.
 
@@ -373,57 +353,3 @@ The only outside requirements are the ones a Python application cannot ship: the
 from your SUMO installation, the pip packages in `requirements.txt`, and internet access for the CDN
 assets. No path, import or config in this repository points outside its own directory.
 
----
-
-## Known issues
-
-Listed rather than hidden.
-
-1. **The map needs internet access.** Leaflet, Chart.js, html2canvas and the OpenStreetMap tiles all
-   load from a CDN. Offline, Leaflet falls back to a built-in canvas renderer so the map still draws,
-   but the charts do not. Vendoring the four assets into `vendor/` would remove this dependency.
-
-2. **The demo mode can mask integration failures.** See
-   [Usage](#read-this-before-you-trust-what-you-see). Gating it behind a flag is the single
-   highest-value fix available.
-
-3. **The two modes write their output to different folders** — MAPPO to `saved_models/`,
-   Fixed-Time to `results/`. Confusing when you run both. They could share one output directory.
-
-4. **`worker.py` monkey-patches `MAPPOTrainer._log`.** It is the only genuinely invasive technique
-   here, and it binds to a private method signature. If the trainer is updated from the research
-   repository and that signature changes, the dashboard breaks at startup. See
-   [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#4-the-threading-model).
-
-5. **The QWebChannel in `app/window.py` is dead code.** A channel is registered on the page, but the
-   HTML never calls `qt.webChannelTransport` and no slots are exposed — all data flows through
-   `runJavaScript` instead. Harmless, but it can be deleted.
-
-6. **`worker.py` has a dead fallback import.** It falls back to `fixed_time_baseline`, a module that
-   does not exist; the primary import (`fixed_time_for_mappo_4`) is the one that works.
-
-7. **Emergency-vehicle status is a placeholder.** `worker.py` hardcodes `"emergency": False` for
-   every agent, so the emergency-vehicle rendering in the HTML can never trigger from live data. The
-   trainer does classify emergency vehicles — it is simply not surfaced.
-
-8. **Detector output files (`e2_*.xml`) are git-ignored** and are written to the process working
-   directory rather than into `sumo/`.
-
-9. **No trained checkpoints are committed.** MAPPO mode trains from scratch on each run, so the
-   first launch takes as long as the configured `total_steps` allows.
-
----
-
-## License
-
-Released under the [MIT License](LICENSE).
-
-Developed as part of the Work-Based Professional Project course — Sphinx University, Faculty of
-Computers and Artificial Intelligence, 2026.
-
-## Authors
-
-George Amgad · Samaan Melad · Amir Roshdy · Mena Tharwot · Maria Soliman · Youstina Bassim ·
-Mahmoud Amr · Amgad Ayman
-
-Faculty of Computers and Artificial Intelligence, Sphinx University, 2026
