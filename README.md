@@ -188,7 +188,7 @@ Everything below is implemented in the current code.
 - **Python 3.10+**
 - **SUMO 1.26+** — the network was generated with Eclipse SUMO netedit 1.26.0
 - **Internet access at runtime** — the map loads Leaflet, Chart.js and html2canvas from a CDN and
-  fetches OpenStreetMap tiles (see [Known issues](#known-issues))
+  fetches OpenStreetMap tiles
 - A CUDA GPU is optional; the code auto-detects and falls back to CPU
 
 ### 2. Install SUMO and set `SUMO_HOME`
